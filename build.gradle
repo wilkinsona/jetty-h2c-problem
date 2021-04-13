@@ -1,0 +1,23 @@
+plugins {
+	id 'java'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation(platform("org.eclipse.jetty:jetty-bom:$jettyVersion"))
+	implementation("org.eclipse.jetty.http2:http2-server")
+
+	testImplementation("org.apache.httpcomponents.client5:httpclient5:5.0.3")
+	testImplementation("org.assertj:assertj-core:3.19.0")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+
+	testRuntimeOnly("org.slf4j:slf4j-simple:2.0.0-alpha1")
+}
+
+test {
+	useJUnitPlatform()
+	systemProperty("org.slf4j.simpleLogger.defaultLogLevel", "TRACE")
+}
